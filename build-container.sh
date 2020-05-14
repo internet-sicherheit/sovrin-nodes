@@ -1,0 +1,1 @@
+# Shell script to execute docker build and docker run based on a given dockerfile
