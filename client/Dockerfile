@@ -16,5 +16,11 @@ RUN sudo apt upgrade -y
 RUN sudo apt install -y indy-cli
 
 
+# add accpetance_mechanism
+RUN mkdir /workspace
+WORKDIR /workspace
+COPY accpetance_mechanism ./cliconfig.json
+RUN indy-cli --config ./cliconfig.json
+
 
 
