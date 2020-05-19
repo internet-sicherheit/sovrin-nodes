@@ -1,4 +1,4 @@
-# Dockerfile to build a Container for a sovrin validatior node
+# Dockerfile to build a Container for a sovrin client node
 
 # container will base on ubuntu 16.04
 FROM ubuntu:16.04
@@ -23,4 +23,11 @@ COPY accpetance_mechanism ./cliconfig.json
 RUN indy-cli --config ./cliconfig.json
 
 
+# get genesis files
+RUN curl -O https://raw.githubusercontent.com/sovrin-foundation/sovrin/master/sovrin/pool_transactions_builder_genesis
+RUN curl -O https://raw.githubusercontent.com/sovrin-foundation/sovrin/stable/sovrin/pool_transactions_sandbox_genesis
+RUN curl -O https://raw.githubusercontent.com/sovrin-foundation/sovrin/stable/sovrin/pool_transactions_live_genesis
 
+# generate steward keys
+RUN sudo apt install -y pwgen
+RUN pwgen -s 32 1
