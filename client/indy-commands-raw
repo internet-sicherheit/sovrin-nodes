@@ -1,0 +1,9 @@
+# file with commands to present to indy-cli to execute
+
+pool create buildernet gen_txn_file=pool-transactions_builder_genesis
+wallet create buildernet_wallet key
+abc
+pool connect buildernet
+wallet open buildernet_wallet key
+abc
+

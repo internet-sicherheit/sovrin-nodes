@@ -4,16 +4,16 @@
 FROM ubuntu:16.04
 
 # update and upgrade node first
-RUN sudo apt update -y
-RUN sudo apt upgrade -y
+RUN apt update -y 
+RUN apt upgrade -y
 
 # install node packages
-RUN sudo apt-key adv --keyserver keyserver.ubuntu.com --rcv-keys CE7709D068D85E88
-RUN sudo apt install -y software-properties-common python-software-properties
-RUN sudo add-apt-repository "deb https://repo.sovrin.org/sdk/deb/xenial stable"
-RUN sudo apt update -y
-RUN sudo apt upgrade -y 
-RUN sudo apt install -y indy-cli
+RUN apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys CE7709D068DB5E88
+RUN apt install -y software-properties-common python-software-properties
+RUN add-apt-repository "deb https://repo.sovrin.org/sdk/deb/xenial stable"
+RUN apt update -y
+RUN apt upgrade -y 
+RUN apt install -y indy-cli
 
 
 # add accpetance_mechanism
@@ -28,6 +28,4 @@ RUN curl -O https://raw.githubusercontent.com/sovrin-foundation/sovrin/master/so
 RUN curl -O https://raw.githubusercontent.com/sovrin-foundation/sovrin/stable/sovrin/pool_transactions_sandbox_genesis
 RUN curl -O https://raw.githubusercontent.com/sovrin-foundation/sovrin/stable/sovrin/pool_transactions_live_genesis
 
-# generate steward keys
-#RUN sudo apt install -y pwgen
-#RUN pwgen -s 32 1
+
