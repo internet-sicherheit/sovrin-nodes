@@ -29,5 +29,5 @@ RUN curl -O https://raw.githubusercontent.com/sovrin-foundation/sovrin/stable/so
 RUN curl -O https://raw.githubusercontent.com/sovrin-foundation/sovrin/stable/sovrin/pool_transactions_live_genesis
 
 # generate steward keys
-RUN sudo apt install -y pwgen
-RUN pwgen -s 32 1
+#RUN sudo apt install -y pwgen
+#RUN pwgen -s 32 1
