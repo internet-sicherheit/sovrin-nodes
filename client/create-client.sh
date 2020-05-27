@@ -12,8 +12,14 @@ then
 	exit
 fi
 
-path=$2
-echo "given path is:"  $path
+path=$2 
 
-# deleting a maybe existing old Dockerfile with maybe old paths
-rm -f Dockerfile/Dockerfile 
+# Docker build by dockerfile with setting up the indy wallet.
+docker build -t validator:client . 
+
+# docker run with presenting the keys for the wallet
+docker run --name validator-client -d -it -v $2:/workspace/keys validator:client
+
+# docker exec with loading the importet key data into the wallet
+docker exec validator-client indy-cli --config ./cliconfig.json indy-commands-setup
+

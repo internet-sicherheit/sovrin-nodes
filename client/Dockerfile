@@ -18,6 +18,7 @@ RUN apt-get update  \
 RUN mkdir /workspace
 WORKDIR /workspace
 COPY acceptance_mechanism.json ./cliconfig.json
+COPY indy-commands-setup ./indy-commands-setup
 RUN indy-cli --config ./cliconfig.json
 
 
@@ -25,3 +26,8 @@ RUN indy-cli --config ./cliconfig.json
 ADD https://raw.githubusercontent.com/sovrin-foundation/sovrin/master/sovrin/pool_transactions_builder_genesis pool_transactions_builder_genesis
 ADD https://raw.githubusercontent.com/sovrin-foundation/sovrin/stable/sovrin/pool_transactions_sandbox_genesis pool_transactions_sandbox_genesis
 ADD https://raw.githubusercontent.com/sovrin-foundation/sovrin/stable/sovrin/pool_transactions_live_genesis pool_transactions_live_genesis
+
+# running indy cli with the commands in indy-command file
+#RUN indy-cli --config ./cliconfig.json indy-commands-setup
+#ENTRYPOINT [ "indy-cli" ]
+#CMD [ "--config", "./cliconfig.json", "indy-commands-setup" ]

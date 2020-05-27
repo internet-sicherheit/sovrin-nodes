@@ -1,0 +1,8 @@
+# file with commands to present to indy-cli to execute
+# preparing the client but not importing any data in the wallet 
+
+pool create buildernet gen_txn_file=pool_transactions_builder_genesis
+wallet create buildernet_wallet key=abc
+pool connect buildernet
+wallet open buildernet_wallet key=abc
+did import /workspace/keys 
