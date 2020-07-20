@@ -6,7 +6,7 @@ FROM ubuntu:16.04
 # install node packages
 RUN apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys CE7709D068DB5E88
 RUN apt-get update \
-  && apt-get install -y software-properties-common python-software-properties apt-transport-https ca-certificates \
+  && apt-get install -y software-properties-common python-software-properties apt-transport-https ca-certificates pwgen \
   && rm -rf /var/lib/apt/lists/*
 
 RUN add-apt-repository "deb https://repo.sovrin.org/sdk/deb xenial stable"

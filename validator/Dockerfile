@@ -11,10 +11,18 @@ EXPOSE 9702/tcp
 
 
 # install sovrin packages and update
-RUN sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys CE7709D068DB5E88
-RUN sudo apt-get install -y software-properties-common
-RUN sudo add-apt-repository "deb https://repo.sovrin.org/deb xenial stable"
-RUN sudo apt update -y 
-RUN sudo apt upgrade -y 
-RUN sudo apt install -y sovrin
+RUN apt-key adv --keyserver keyserver.ubuntu.com --recv-keys CE7709D068DB5E88 \
+  && apt-get update \
+  && apt-get install -y software-properties-common apt-transport-https ca-certificates curl pwgen \ 
+  && add-apt-repository "deb [arch=amd64] http://repo.sovrin.org/deb xenial stable" \
+  && apt-get update \
+  && apt-get install -y sovrin
+ADD indy_config.py /etc/indy/indy_config.py
 
+USER indy
+RUN mkdir /var/lib/indy/net3
+WORKDIR /var/lib/indy/net3
+ADD https://raw.githubusercontent.com/sovrin-foundation/sovrin/master/sovrin/domain_transactions_builder_genesis domain_transactions_genesis
+ADD https://raw.githubusercontent.com/sovrin-foundation/sovrin/master/sovrin/pool_transactions_builder_genesis pool_transactions_genesis
+
+USER root
